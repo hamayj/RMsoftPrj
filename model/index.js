@@ -47,7 +47,7 @@ db.PurchaseInfo.hasMany(db.Buyer, {
     sourceKey : "id",
     onDelete: "cascade"
 });
-db.Company.belongsTo(db.ItemInfo, {
+db.Buyer.belongsTo(db.PurchaseInfo, {
     foreignKey: "buyerId",
     sourceKey : "id",
     onDelete: "cascade"
