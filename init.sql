@@ -21,7 +21,7 @@ CREATE TABLE `itemInfo` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `itemName` varchar(255) NOT NULL,
   `price` int NOT NULL,
-  `register_date` date NOT NULL,
+  `registerDate` date NOT NULL,
   `companyId` int NOT NULL
 );
 
@@ -50,7 +50,7 @@ CREATE TABLE `purchaseInfo` (
 
 ALTER TABLE `itemInfo` ADD FOREIGN KEY (`companyId`) REFERENCES `company` (`id`) ON DELETE CASCADE;
 ALTER TABLE `purchaseInfo` ADD FOREIGN KEY (`itemInfo`) REFERENCES `itemInfo` (`id`) ON DELETE CASCADE;
-ALTER TABLE `purchaseInfo` ADD FOREIGN KEY (`buyer_id`) REFERENCES `buyer` (`id`) ON DELETE CASCADE;
+ALTER TABLE `purchaseInfo` ADD FOREIGN KEY (`buyerId`) REFERENCES `buyer` (`id`) ON DELETE CASCADE;
 
 
 
@@ -59,17 +59,17 @@ INSERT INTO `company` (companyName, ceoName, phone) values ("(주)RM", "최광�
 INSERT INTO `company` (companyName, ceoName, phone) values ("(주)codingon", "코딩온", "010-1111-2222");
 INSERT INTO `company` (companyName, ceoName, phone) values ("(주)SeSAC", "새싹", "010-2222-3333");
 
-INSERT INTO `itemInfo` (itemName, price, register_date, companyId) values ("알엠크림 3종 세트", "20000", "2022-12-22", 1);
-INSERT INTO `itemInfo` (itemName, price, register_date, companyId) values ("코딩온 에센스", "300000", "2022-12-23", 2);
-INSERT INTO `itemInfo` (itemName, price, register_date, companyId) values ("새싹 키트", "40000", "2022-12-23", 3);
+INSERT INTO `itemInfo` (itemName, price, registerDate, companyId) values ("알엠크림 3종 세트", "20000", "2022-12-22", 1);
+INSERT INTO `itemInfo` (itemName, price, registerDate, companyId) values ("코딩온 에센스", "300000", "2022-12-23", 2);
+INSERT INTO `itemInfo` (itemName, price, registerDate, companyId) values ("새싹 키트", "40000", "2022-12-23", 3);
 
 INSERT INTO `buyer` (buyerName, buyerPhone) values ("함유정", "010-3272-0190");
 INSERT INTO `buyer` (buyerName, buyerPhone) values ("임채연", "010-1004-1004");
 INSERT INTO `buyer` (buyerName, buyerPhone) values ("Chey", "010-5555-5555");
 
-INSERT INTO `purchaseInfo` (buyer_id, price, purchaseDate, itemInfo) values (1, "20000", "2022-12-23", 1);
-INSERT INTO `purchaseInfo` (buyer_id, price, purchaseDate, itemInfo) values (1, "20000", "2022-12-23", 1);
-INSERT INTO `purchaseInfo` (buyer_id, price, purchaseDate, itemInfo) values (1, "20000", "2022-12-23", 1);
+INSERT INTO `purchaseInfo` (buyerId, price, purchaseDate, itemInfo) values (1, "20000", "2022-12-23", 1);
+INSERT INTO `purchaseInfo` (buyerId, price, purchaseDate, itemInfo) values (1, "20000", "2022-12-23", 1);
+INSERT INTO `purchaseInfo` (buyerId, price, purchaseDate, itemInfo) values (1, "20000", "2022-12-23", 1);
 
 
 
