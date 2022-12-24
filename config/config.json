@@ -1,9 +1,0 @@
-{
-    "development": {
-        "host": "localhost",
-        "database": "shopInfo",
-        "username": "rm",
-        "password": "RMsoft1!",
-        "dialect": "mysql"
-    }
-}

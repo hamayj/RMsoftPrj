@@ -39,4 +39,4 @@ const PurchaseInfo = (Sequelize, DataTypes)=> {
     return model;
 }
 
-export default PurchaseInfo;
+module.exports = PurchaseInfo;

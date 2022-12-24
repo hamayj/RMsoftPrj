@@ -1,7 +1,7 @@
-const Buyer = (Sequelize, DataTypes)=> {
+const ItemInfo = (Sequelize, DataTypes)=> {
     const model = Sequelize.define(
         // 모델 이름
-        'Buyer',
+        'ItemInfo',
         // 컬럼 정의
         {
             id: {
@@ -10,14 +10,23 @@ const Buyer = (Sequelize, DataTypes)=> {
                 allowNull: false,
                 primaryKey: true
             },
-            buyerName: {
+            itemName: {
                 type: DataTypes.STRING(255),
                 allowNull: false
             },
-            buyerPhone: {
-                type: DataTypes.STRING(255),
+            price: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            registerDate: {
+                type: DataTypes.DATEONLY,
+                allowNull: false
+            },
+            companyId: {
+                type: DataTypes.INTEGER,
                 allowNull: false
             }
+
         },
         // 모델 옵션
         {
@@ -25,10 +34,9 @@ const Buyer = (Sequelize, DataTypes)=> {
             collate: "utf8_general_ci", // 한국어 설정
             timestamps: false,
             freezeTableName: true,
-            tableName: 'Buyer',
+            tableName: 'ItemInfo',
         }
     );
     return model;
 }
-
-export default Buyer;
+module.exports = ItemInfo;

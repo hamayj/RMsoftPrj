@@ -36,14 +36,46 @@ app.get("/company", async (req, res) => {
 app.get("/buyer", async (req, res) => {
     console.log("path: /buyer, method: get");
     let buyer = await Models.Buyer.findAll();
+    let results = [];
+    let result = {};
+    for (let i=0; i<buyer.length; i++) {
+        console.log(buyer[i].buyerPhone);
+        let new_phone = "";
+        for(let j=0; j<buyer[i].buyerPhone.length; j++) {
+            if (j === 10 || j === 11) new_phone += "*";
+            else new_phone += buyer[i].buyerPhone[j];
+        }
+        buyer[i].buyerPhone = new_phone;
+        result.name = buyer[i].buyerName;
+        result.phone = buyer[i].buyerPhone;
+        results.push(result);
 
-    let maskingSql = `
-    select replace(buyerPhone, substr(buyerPhone, 9, 2), '*') buyerPhone
-    from buyer         
-    `;
+    }
+    console.log(results);
+    res.send(results);
+    
+    //loop 도는 코드를 참고해서 만들어보자. ㅠ__ㅠ
+    // let getPhones = async (req, res) => {
+    //     let result = await Models.Buyer.findAll();//{where: {buyerPhone : req.query.buyerPhone}});
+    //     console.log(result);
+    //     let ls = [];
+    //     for (let i = 0; i<result.length; i++) {
+    //         let event = await Models.Buyer.findOne({where : {id : result[i].event_id}});
+    //         ls.push({'id' : event.id, 'title' : event.title, 'date' : result[i].date , 's_id': result[i].id});
+    //     }
+    //     res.send(ls);
+    // }
 
-    console.log('검색 결과 :', buyer);
-    res.json("구매자 정보", {buyer: buyer});
+
+    // 짤라서 만드는 코드 참고.
+    // concat(str, 0, 4) + ** + concat(str, 6, 10) 
+    // let maskingSql = `
+    // select replace(buyerPhone, substr(buyerPhone, 9, 2), '*') buyerPhone
+    // from buyer         
+    // `;
+
+    // console.log('검색 결과 :', buyer);
+    // res.json("구매자 정보", {buyer: buyer});
 });
 
 
@@ -69,3 +101,12 @@ app.get("/buyer", async (req, res) => {
 // user = { name: 'a', age: '12' }
 // user.name = user.name + '**';
 // res.send(user)
+
+// loop? 
+
+
+app.listen(port, () => {
+    console.log("Server port : ", port);
+});
+
+

@@ -35,4 +35,4 @@ const Company = (Sequelize, DataTypes)=> {
     return model;
 }
 
-export default Company;
+module.exports = Company;

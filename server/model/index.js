@@ -12,8 +12,8 @@ const sequelize = new Sequelize(
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.ItemInfo = require("./ItemInfo").default(sequelize, Sequelize);
-db.Company = require("./Company").default(sequelize, Sequelize);
+db.ItemInfo = require("./ItemInfo")(sequelize, Sequelize);
+db.Company = require("./Company")(sequelize, Sequelize);
 db.Buyer = require("./Buyer")(sequelize, Sequelize);
 db.PurchaseInfo = require("./PurchaseInfo")(sequelize, Sequelize);
 
@@ -42,12 +42,12 @@ db.ItemInfo.belongsTo(db.PurchaseInfo, {
 })
 
 // 구매자 테이블의 id 컬럼을, 구매정보 테이블의 buyer_id 컬럼과 연결시킴.
-db.PurchaseInfo.hasMany(db.Buyer, {
+db.Buyer.hasMany(db.PurchaseInfo, {
     foreignKey: "buyerId",
     sourceKey : "id",
     onDelete: "cascade"
 });
-db.Buyer.belongsTo(db.PurchaseInfo, {
+db.PurchaseInfo.belongsTo(db.Buyer, {
     foreignKey: "buyerId",
     sourceKey : "id",
     onDelete: "cascade"

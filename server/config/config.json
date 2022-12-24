@@ -1,0 +1,9 @@
+{
+    "development": {
+        "host": "rmsoft-mysql",
+        "database": "rmsoft",
+        "username": "hamayj",
+        "password": "hamayj1!",
+        "dialect": "mysql"
+    }
+}

@@ -1,20 +1,16 @@
-/* shopInfo 데이터베이스 만들기 */
-CREATE DATABASE shopInfo DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+-- /* 사용자명: rm, 비밀번호: RMsoft1! 인 사용자 만들기 */
+-- CREATE USER 'rm'@'%' IDENTIFIED BY 'RMsoft1!';
 
-/* 사용자명: rm, 비밀번호: RMsoft1! 인 사용자 만들기 */
-CREATE USER 'rm'@'%' IDENTIFIED BY 'RMsoft1!';
+-- -- 권한 부여. *.*으로 설정시 모든 데이터베이스와 테이블에 접근이 허용된다.
+-- GRANT ALL PRIVILEGES ON *.* TO 'rm'@'%' WITH GRANT OPTION;
 
--- 권한 부여. *.*으로 설정시 모든 데이터베이스와 테이블에 접근이 허용된다.
-GRANT ALL PRIVILEGES ON *.* TO 'rm'@'%' WITH GRANT OPTION;
+-- -- 변경된 권한 적용하기
+-- FLUSH PRIVILEGES;
 
--- 변경된 권한 적용하기
-FLUSH PRIVILEGES;
+-- -- 접근 허용하기 (user의 plugin 변경)
+-- ALTER USER 'rm'@'%' IDENTIFIED WITH mysql_native_password BY 'RMsoft1!';
 
--- 접근 허용하기 (user의 plugin 변경)
-ALTER USER 'rm'@'%' IDENTIFIED WITH mysql_native_password BY 'RMsoft1!';
-
--- shopInfo 데이터베이스 사용하기
-USE shopInfo;
+use rmsoft;
 
 -- 테이블 만들기
 CREATE TABLE `itemInfo` (
@@ -74,10 +70,10 @@ INSERT INTO `purchaseInfo` (buyerId, price, purchaseDate, itemInfo) values (1, "
 
 
 -- 데이터 확인
-select * from `company`;
-select * from `itemInfo`;
-select * from `buyer`;
-select * from `purchaseInfo`;
+-- select * from `company`;
+-- select * from `itemInfo`;
+-- select * from `buyer`;
+-- select * from `purchaseInfo`;
 
 
 
