@@ -1,18 +1,16 @@
 version: "3.8"
 services:
   sesac-user:
+    image: hamayj/rmsoft
     depends_on:
       - rmsoft-mysql
     volumes: 
       - /app/node_modules
       - ./server:/app/
-    build: 
-      context: ./server
     ports:
       - "8000:8000"
   rmsoft-mysql:
-    build: 
-      context: ./db
+    image: hamayj/rmsoftdb
     volumes:
       - ./db/mysql:/var/lib/mysql
       - ./db/utf8.cnf:/etc/mysql/conf.d/utf8.cnf
