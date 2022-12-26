@@ -13,31 +13,42 @@ const { Sequelize, Company } = require("./model");
 // 상품 정보 조회
 app.get("/items", async (req, res) => {
     console.log("path: /items, method: get ");
-    let items = await Models.ItemInfo.findAll();
-    
-    let getCompanySql = `
-    select * from iteminfo as i join company as c
-    on i.companyId = c.id
-    `;
+    let query = 'select itemInfo.itemName, itemInfo.price, itemInfo.registerDate as register_date, company.companyName as company from itemInfo inner join company on itemInfo.companyId = company.id;';
 
-    console.log('검색 결과 :', items);
-    await res.json("200", {items: getCompanySql});
+    let items = await Models.sequelize.query( query, {
+        type: Models.sequelize.QueryTypes.SELECT, 
+        raw: true
+    });
+    
+    let results = {
+        total_item_counts: items.length,
+        list: items
+    }
+
+    // console.log('검색 결과 :', items)
+    res.json(results);
 }); 
 
 // 등록업체 조회
 app.get("/company", async (req, res) => {
     console.log("path: /company, method: get");
     let company = await Models.Company.findAll();
-    console.log('검색 결과 :', company);
-    res.json("등록업체 정보", {company: company});
+    let results = {};
+    
+    results.total_company_counts = company.length;
+    results.list = company;
+    console.log("조회결과 :", results);
+    res.json(results);
 });
 
-// 구매자 조회
+// 구매자 조회 
 app.get("/buyer", async (req, res) => {
     console.log("path: /buyer, method: get");
     let buyer = await Models.Buyer.findAll();
+    let results0 = {}; // 결과적으로 json으로 보내줄 컨테이너 객체.
+    results0.total_buyer_counts = buyer.length;
     let results = [];
-    let result = {};
+    // 개인정보 마스킹 처리
     for (let i=0; i<buyer.length; i++) {
         console.log(buyer[i].buyerPhone);
         let new_phone = "";
@@ -46,63 +57,42 @@ app.get("/buyer", async (req, res) => {
             else new_phone += buyer[i].buyerPhone[j];
         }
         buyer[i].buyerPhone = new_phone;
+        let result = {};
         result.name = buyer[i].buyerName;
         result.phone = buyer[i].buyerPhone;
         results.push(result);
-
     }
-    console.log(results);
-    res.send(results);
-    
-    //loop 도는 코드를 참고해서 만들어보자. ㅠ__ㅠ
-    // let getPhones = async (req, res) => {
-    //     let result = await Models.Buyer.findAll();//{where: {buyerPhone : req.query.buyerPhone}});
-    //     console.log(result);
-    //     let ls = [];
-    //     for (let i = 0; i<result.length; i++) {
-    //         let event = await Models.Buyer.findOne({where : {id : result[i].event_id}});
-    //         ls.push({'id' : event.id, 'title' : event.title, 'date' : result[i].date , 's_id': result[i].id});
-    //     }
-    //     res.send(ls);
-    // }
-
-
-    // 짤라서 만드는 코드 참고.
-    // concat(str, 0, 4) + ** + concat(str, 6, 10) 
-    // let maskingSql = `
-    // select replace(buyerPhone, substr(buyerPhone, 9, 2), '*') buyerPhone
-    // from buyer         
-    // `;
-
-    // console.log('검색 결과 :', buyer);
-    // res.json("구매자 정보", {buyer: buyer});
+    results0.list = results;
+    res.json(results0);
 });
 
 
-// 구매정보 조회
-app.get("/buyer", async (req, res) => {
-    console.log("path: /buyer, method: get");
-    let purchaseInfo = await Models.PurchaseInfo.findAll();
+// 구매정보 조회 -> 모든 테이블 합쳐야되니 두개로 나눠서 합쳤음.
+app.get("/purchaseInfo", async (req, res) => {
+    console.log("path: /purchaseInfo, method: get");
+    let query = 'select * from purchaseInfo inner join buyer on purchaseInfo.buyerId = buyer.id;'
 
-    let joinSql = `
-    select * 
-    from purchaseInfo as p
-    join buyer as b 
-        on b.id = p.buyerId
-    join itemInfo as i
-        on i.id = p.itemInfo
-    `;
-    
-    console.log('검색 결과 :', purchaseInfo);
-    res.json("구매자 정보", {purchaseInfo: purchaseInfo});
+    let results = {};
+    let purchaseInfo = await Models.sequelize.query( query, {
+        type: Models.sequelize.QueryTypes.SELECT, 
+        raw: true
+    });
+
+    for ( let i = 0; i < purchaseInfo.length; i++ ) {
+        let query = `select * from itemInfo inner join company on itemInfo.companyId = company.id where itemInfo.id = ${purchaseInfo[i].itemInfo}`;
+        
+        let itemInfo = await Models.sequelize.query( query, {
+            type: Models.sequelize.QueryTypes.SELECT, 
+            raw: true
+        });
+        purchaseInfo[i]["item"] = itemInfo;
+    }
+
+    results.total_purchase_counts = purchaseInfo.length;
+    results.lists = purchaseInfo;
+    res.json(results);
 });
 
-// let user = User.findOne();
-// user = { name: 'a', age: '12' }
-// user.name = user.name + '**';
-// res.send(user)
-
-// loop? 
 
 
 app.listen(port, () => {

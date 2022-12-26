@@ -22,11 +22,10 @@ const ItemInfo = (Sequelize, DataTypes)=> {
                 type: DataTypes.DATEONLY,
                 allowNull: false
             },
-            companyId: {
-                type: DataTypes.INTEGER,
-                allowNull: false
-            }
-
+            // companyId: {
+            //     type: DataTypes.INTEGER,
+            //     allowNull: false
+            // }
         },
         // 모델 옵션
         {

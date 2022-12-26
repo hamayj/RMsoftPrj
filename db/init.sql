@@ -18,7 +18,7 @@ CREATE TABLE `itemInfo` (
   `itemName` varchar(255) NOT NULL,
   `price` int NOT NULL,
   `registerDate` date NOT NULL,
-  `companyId` int NOT NULL
+  -- `companyId` int NOT NULL
 );
 
 CREATE TABLE `company` (
@@ -63,9 +63,9 @@ INSERT INTO `buyer` (buyerName, buyerPhone) values ("함유정", "010-3272-0190"
 INSERT INTO `buyer` (buyerName, buyerPhone) values ("임채연", "010-1004-1004");
 INSERT INTO `buyer` (buyerName, buyerPhone) values ("Chey", "010-5555-5555");
 
-INSERT INTO `purchaseInfo` (buyerId, price, purchaseDate, itemInfo) values (1, "20000", "2022-12-23", 1);
-INSERT INTO `purchaseInfo` (buyerId, price, purchaseDate, itemInfo) values (1, "20000", "2022-12-23", 1);
-INSERT INTO `purchaseInfo` (buyerId, price, purchaseDate, itemInfo) values (1, "20000", "2022-12-23", 1);
+INSERT INTO `purchaseInfo` (buyerId, price, purchaseDate, itemInfo) values (1, "10000", "2022-12-23", 1);
+INSERT INTO `purchaseInfo` (buyerId, price, purchaseDate, itemInfo) values (2, "20000", "2022-12-24", 2);
+INSERT INTO `purchaseInfo` (buyerId, price, purchaseDate, itemInfo) values (3, "30000", "2022-12-25", 3);
 
 
 
