@@ -4,7 +4,7 @@
 - 프로젝트명 : RMsoft 채용 과제
 - 개요 : 조회 API 제작 및 docker를 통한 서버 구축
 - **Stack** : `Docker`, `node.js`, `Mysql`, `git`
-
+- 더 자세한 과제 해결 과정은 https://hamayj.notion.site/RMsoft-64f39a8eacb14988b322cea48d0b8edb 을 참고해주세요! 🐳🐳🐳
 ### 📌 프로젝트 실행
 - docker 설치를 해주세요.
 
