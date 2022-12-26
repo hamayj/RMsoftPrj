@@ -5,6 +5,7 @@
 - 개요 : 조회 API 제작 및 docker를 통한 서버 구축
 - **Stack** : `Docker`, `node.js`, `Mysql`, `git`
 - 더 자세한 과제 해결 과정은 https://hamayj.notion.site/RMsoft-64f39a8eacb14988b322cea48d0b8edb 을 참고해주세요! 🐳🐳🐳
+
 ### 📌 프로젝트 실행
 - docker 설치를 해주세요.
 
@@ -23,6 +24,22 @@
    
     ```
     
+    
+### 📌 사용한 패키지 (package.json 파일을 참조 부탁드립니다.)
+<img width="442" alt="image" src="https://user-images.githubusercontent.com/99241228/209534649-db0b049e-bd92-49a3-b267-2832b88a6703.png">
+
+
+
+### 📌 개인 Docker hub 구축
+- 개요 : Docker 관련 이미지 생성 후 개인 Docker Hub 생성
+- [https://hub.docker.com/r/hamayj/rmsoft](https://hub.docker.com/r/hamayj/rmsoft)
+- [https://hub.docker.com/r/hamayj/rmsoftdb](https://hub.docker.com/r/hamayj/rmsoftdb)
+<img width="1002" alt="image" src="https://user-images.githubusercontent.com/99241228/209534898-58ea56c9-68f9-4e39-a884-09c1297a0bff.png">
+
+
+
+
+
     
 ### 📌API 기능
 1. 아이템 조회
@@ -43,5 +60,6 @@
 ### 📌 개념적 - 물리적 데이터 모델링
 https://dbdiagram.io/d/63a3e2ce99cb1f3b55a2e890
 <img width="1739" alt="image" src="https://user-images.githubusercontent.com/99241228/209082903-de24c767-2186-453f-9fc9-0c123c04a0d0.png">
+
 
 
