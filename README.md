@@ -3,13 +3,13 @@
 ### 📌 프로젝트 Description
 - 프로젝트명 : RMsoft 채용 과제
 - 개요 : 조회 API 제작 및 docker를 통한 서버 구축
-- **Stack** : `Docker`, `node.js`, `Mysql`, `git`
+- **Stack** : `Docker`, `node.js`, `Mysql`, `git`, `DockerHub`
 - 더 자세한 과제 해결 과정은 https://hamayj.notion.site/RMsoft-64f39a8eacb14988b322cea48d0b8edb 을 참고해주세요! 🐳🐳🐳
 
 ### 📌 프로젝트 실행
-- docker 설치를 해주세요.
+- Docker 설치를 해주세요.
 
-- node.js 패키지 설치법
+- Node.js 패키지 설치법
     ```
     // (/server 폴더 내에서 명령어 작성. package.json있는 폴더)
     npm i
@@ -34,7 +34,7 @@
 - 개요 : Docker 관련 이미지 생성 후 개인 Docker Hub 생성
 - [https://hub.docker.com/r/hamayj/rmsoft](https://hub.docker.com/r/hamayj/rmsoft)
 - [https://hub.docker.com/r/hamayj/rmsoftdb](https://hub.docker.com/r/hamayj/rmsoftdb)
-<img width="1002" alt="image" src="https://user-images.githubusercontent.com/99241228/209534898-58ea56c9-68f9-4e39-a884-09c1297a0bff.png">
+<img width="948" alt="image" src="https://user-images.githubusercontent.com/99241228/209535514-c84f7791-34eb-4948-a63e-d959900d6a09.png">
 
 
 
