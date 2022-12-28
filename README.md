@@ -12,16 +12,13 @@
 - Node.js 패키지 설치법
     ```
     // (/server 폴더 내에서 명령어 작성. package.json있는 폴더)
-    npm i
-    npm start
-   
+    npm i   
     ```
     
 - 도커 실행
     ```
     // (/RMsoftPrj 폴더 내에서 명령어 작성. docker-compose.yml이 있는 폴더)
     docker-compose up
-   
     ```
     
     
